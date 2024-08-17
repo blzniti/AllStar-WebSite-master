@@ -1,0 +1,43 @@
+<main class="relative w-full h-full max-h-full flex-grow flex-col pb-12 gap-6 overflow-hidden">
+  <div class="relative flex flex-col w-full h-full grow card">
+    <!-- Title -->
+    <div class="h-auto flex pt-4 md:pt-2 pb-4 md:py-0 md:pb-9 items-center justify-center">
+      <img style="width: 80px; height: 60px" src="../../../assets/images/natsu.svg" alt="" />
+      <p class="text-4xl md:text-5xl font-bold text-stoke-red text-center pb-12 lg:pb-0">
+        SignIn
+      </p>
+    </div>
+
+    <!-- Form -->
+    <form id="signin-form" (submit)="signIn($event)"
+      class="relative text-xl w-full mx-auto h-full min-h-full overflow-hidden gap-4 justify-center items-center flex flex-col">
+      <div class="w-full px-6 md:flex justify-center items-center">
+        <p style="padding-right: 1rem; "><b>Username</b></p>
+        <input name="username" required class="w-full max-w-[30rem] h-12 input text-black" type="text" maxlength="20"
+          placeholder="Username :" />
+      </div>
+      <div class="w-full px-6 pt-2 md:flex justify-center items-center">
+        <p style="padding-right: 1rem; "><b>Password</b></p>
+        <div class="relative w-full max-w-[30rem] h-12">
+          <input name="password" #password required class="w-full h-full input" maxlength="32" type="password"
+            placeholder="Password :" />
+          <!-- eye -->
+          <fa-icon [icon]="eye1" class="cursor-pointer text-black absolute pt-1 right-3 top-1/2 -translate-y-1/2"
+            (click)="togglePasswordVisibility(password)" />
+        </div>
+      </div>
+
+      <button type="submit"
+        class="select-none text-stoke-blue w-full max-w-48 lg:max-w-96 h-16 p-4 button font-bold text-center disabled:!bg-gray-500"
+        [disabled]="isSigning">
+        SignIn
+      </button>
+    </form>
+
+    <!-- arrow router link to "/joinUs" -->
+    <a routerLink="/auth/join"
+      class="cursor-pointer absolute top-6 left-6 text-4xl md:text-6xl text-stoke-red rotate-90 text-[#f64363]">
+      <fa-icon [icon]="faArrowDown" />
+    </a>
+  </div>
+</main>

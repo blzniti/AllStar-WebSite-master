@@ -1,0 +1,63 @@
+<main class="relative w-full h-full flex-grow flex-col pb-12 gap-6">
+  <div class="relative flex flex-col w-full h-full grow gap-2">
+    <!-- Title -->
+    <div class="h-auto flex pt-4 md:pt-2 pb-4 md:py-0 md:pb-9 items-center justify-center">
+      <p class="text-4xl md:text-6xl font-bold text-stoke-red text-center">
+        <!-- icon -->
+        <fa-icon [icon]="faTrophy" class="text-6xl md:text-7xl text-yellow-500"></fa-icon>
+        Anime Top10
+      </p>
+    </div>
+    <div *ngIf="users.length > 0; else loading" class="relative flex flex-col w-full h-full grow gap-2">
+      <!-- Top3 -->
+      <div class="w-full h-auto">
+        <div class="w-full flex flex-col gap-4 justify-center items-center">
+          <div class="hidden lg:flex w-full gap-4 justify-center items-center text-6xl text-center font-bold px-48">
+            <!-- row1 top 1 -->
+            <div *ngIf="users.length >= 2" class="realtive w-auto h-auto pt-24">
+              #2
+              <app-rank-card [data]="users[1]" color="#00d0e0" />
+            </div>
+            <div *ngIf="users.length >= 1" class="realtive w-auto h-auto -mt-48">
+              #1
+              <app-rank-card [data]="users[0]" color="#d64363" />
+            </div>
+            <div *ngIf="users.length >= 3" class="realtive w-auto h-auto pt-32">
+              #3
+              <app-rank-card [data]="users[2]" color="#0dade4" />
+            </div>
+          </div>
+          <div
+            class="lg:hidden w-full flex flex-col gap-4 justify-center items-center text-6xl text-center font-bold px-48">
+            <!-- row1 top 1 -->
+            <div *ngIf="users.length >= 1" class="realtive w-auto h-auto">
+              #1
+              <app-rank-card [data]="users[0]" color="#d64363" />
+            </div>
+            <div *ngIf="users.length >= 2" class="realtive w-auto h-auto">
+              #2
+              <app-rank-card [data]="users[1]" color="#0171e4" />
+            </div>
+            <div *ngIf="users.length >= 3" class="realtive w-auto h-auto">
+              #3
+              <app-rank-card [data]="users[2]" color="#01a1e4" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Another -->
+      <div *ngIf="users.length >= 4"
+        class="w-full max-w-6xl justify-center items-center h-auto xl:px-16 mx-auto py-4 flex gap-2 flex-wrap">
+        <app-rank-card *ngFor="let image of users.slice(3)" [data]="image" [size]="2" />
+      </div>
+    </div>
+
+    <ng-template #loading>
+      <div class="relative flex w-full h-full pr-2 md:pr-0 grow gap-5 flex-col justify-center items-center mx-auto">
+        <fa-icon [icon]="faSpinner" class="text-9xl text-stoke-red animate-spin" />
+      </div>
+    </ng-template>
+  </div>
+
+</main>

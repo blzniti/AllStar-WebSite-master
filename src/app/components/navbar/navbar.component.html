@@ -1,0 +1,51 @@
+<nav *ngIf="!isLoggedIn && !isAdmin; else LoggedIn"
+  class="mx-auto px-6 w-full h-28 flex justify-between items-center p-2">
+  <div class="w-auto h-full flex items-center justify-start">
+    <!-- Logo -->
+    <a routerLink="/" class="text-stroke text-4xl font-bold text-[#436AF6] stroke-white stroke-3 m-0 p-0">
+      <span class="text-[#F64363] m-0 p-0">A</span>Star
+    </a>
+  </div>
+
+  <!-- items expand -->
+  <div class="hidden md:flex w-auto h-full justify-end items-center text-white text-xl space-x-4">
+    <a routerLink="/home" [routerLinkActive]="'border-b-2 border-[#F64363]'" class="hover:text-[#f64363]"
+      (click)="isOpened = false">Home</a>
+    <a routerLink="/top10" [routerLinkActive]="'border-b-2 border-[#F64363]'" class="hover:text-[#f64363]"
+      (click)="isOpened = false">Top10</a>
+    <a routerLink="/auth/join"
+      class="text-[#F64363] border-[#F64363] text-base border-2 px-3 py-0.5 rounded-tl-[1.5rem] rounded-br-[1.5rem] hover:bg-[#f64363] hover:text-white"
+      [routerLinkActive]="'border-b-2 border-[#F64363]'" (click)="isOpened = false">
+      Join Us
+    </a>
+  </div>
+
+  <!-- Hamburger -->
+  <div class="w-auto h-full flex items-center justify-end md:hidden">
+    <button (click)="isOpened = !isOpened" class="text-white text-4xl hover:text-[#f64363]">
+      <fa-icon [icon]="faBars"></fa-icon>
+    </button>
+  </div>
+
+  <!-- Full-screen navbar panel -->
+  <div [class]="'fixed inset-0 z-50 md:hidden'" *ngIf="isOpened">
+    <div
+      class="relative h-screen w-screen gap-12 text-center text-4xl p-6 pt-24 flex flex-col justify-start items-center mx-auto bg-slate-600">
+      <a routerLink="/home" [routerLinkActive]="'border-b-2 border-[#F64363]'" class="w-full hover:text-[#f64363]"
+        (click)="isOpened = false">Home</a>
+      <a routerLink="/top10" [routerLinkActive]="'border-b-2 border-[#F64363]'" class="w-full hover:text-[#f64363]"
+        (click)="isOpened = false">Top10</a>
+      <a routerLink="/auth/join"
+        class="w-full text-[#F64363] border-[#F64363] border-2 px-3 py-3 rounded-tl-[1.5rem] rounded-br-[1.5rem] hover:bg-[#f64363] hover:text-white"
+        [routerLinkActive]="'border-b-2 border-[#F64363]'" (click)="isOpened = false">Join Us</a>
+
+      <!-- icon close font-a -->
+      <fa-icon (click)="isOpened = !isOpened" [icon]="faTimes"
+        class="cursor-pointer absolute top-6 right-6 text-4xl text-stoke-red rotate-90 text-[#f64363]"></fa-icon>
+    </div>
+  </div>
+</nav>
+
+<ng-template #LoggedIn>
+  <app-navbar-user *ngIf="!isAdmin" />
+</ng-template>

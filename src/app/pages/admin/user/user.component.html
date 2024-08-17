@@ -1,0 +1,82 @@
+<div
+  class="relative w-full h-full bg-[#12182c99] overflow-x-hidden overflow-y-auto flex flex-col justify-start items-center pb-24 p-12 overflow-hidden">
+  <!-- search and sort -->
+  <div class="relative w-full h-16 flex justify-end px-10 items-center">
+    <!-- search left -->
+    <input [(ngModel)]="searchText" (keyup)="search()"
+      class="w-64 h-10 pl-2 text-black bg-white rounded-md border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
+      type="text" placeholder="Search">
+  </div>
+  <!-- table list of user -->
+  <div class="w-full h-full flex flex-col justify-center items-center overflow-hidden">
+    <!-- table -->
+    <div class="w-full h-full p-4 pb-12">
+      <div class="w-full h-full relative overflow-x-auto bg-[#12184d]">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-200"
+          aria-label="Table displaying user information">
+          <thead class="text-xs uppercase bg-[#12182c] text-gray-300">
+            <tr>
+              <th scope="col" class="w-1/12 px-6 py-6">
+                ID
+              </th>
+              <th scope="col" class="w-5/12 px-6 py-6">
+                Username
+              </th>
+              <th scope="col" class="w-3/12 px-6 py-6">
+                Join Date
+              </th>
+              <th scope="col" class="w-3/12 px-6 py-6">
+                Last Activity
+              </th>
+            </tr>
+          </thead>
+          <tbody *ngIf="userResults.length > 0">
+            <tr *ngFor="let user of userResults.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)"
+              class="border-b bg-[#12184d] border-gray-700 hover:bg-gray-400 cursor-pointer"
+              (click)="window.location.href = '/profile/'+user.userId">
+              <th scope="row" class="px-6 py-2 font-medium whitespace-nowrap text-white">
+                {{user.userId}}
+              </th>
+              <td class="px-6 py-2">
+                <div class="flex items-center gap-2">
+                  <img class="size-10 object-cover rounded-full" src="{{user.image}}" alt="{{user.username}}_image">
+                  <span>{{user.username}}</span>
+                </div>
+              </td>
+              <td class="px-6 py-2">
+                {{user.joinDate}}
+              </td>
+              <td class="px-6 py-2">
+                {{user.lastActivity}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--  pagination -->
+      <div class="w-full h-14 flex justify-center items-center p-4 gap-2">
+        <!-- left -->
+        <button (click)="currentPage = currentPage - 1 <= totalPages ? currentPage - 1 : 1"
+          class="w-10 h-10 bg-[#436af6] hover:bg-[#436af6aa] rounded-full flex justify-center items-center disabled:bg-gray-700"
+          [disabled]="currentPage === 1">
+          <fa-icon [icon]="faAngleLeft" />
+        </button>
+
+        <!-- page number can input of ... -->
+        <div class="w-auto h-10 flex justify-center bg-[#f64363] rounded-lg items-center py-1 px-4 gap-2">
+          <input
+            class="w-10 h-full text-center bg-white rounded-md text-[#f64363] placeholder:text-[#f64363] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            [value]="currentPage" type="number" min="1" max="{{totalPages}}">
+          <span> / {{totalPages}}</span>
+        </div>
+
+        <!-- right -->
+        <button (click)="currentPage = currentPage + 1 <= totalPages ? currentPage + 1 : totalPages"
+          class="w-10 h-10 bg-[#436af6] hover:bg-[#436af6aa] rounded-full flex justify-center items-center disabled:bg-gray-700"
+          [disabled]="currentPage === totalPages">
+          <fa-icon [icon]="faAngleRight" />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

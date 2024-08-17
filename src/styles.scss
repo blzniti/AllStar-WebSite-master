@@ -1,0 +1,92 @@
+// ============== FONT ==============
+@import url('https://fonts.googleapis.com/css2?family=Kadwa:wght@400;700&display=swap');
+// ============== TAILWIND CSS ==============
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+// ============== TOASTIFY ==============
+@import url("toastify-js/src/toastify.css");
+// ============== NGX-TOASTR ==============
+// @import url("ngx-toastr/toastr.css");
+
+html {
+  height: 100% !important;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  height: 100%;
+  min-height: 100vh;
+  min-height: --moz-available;
+  min-height: fill-available;
+  min-height: -webkit-fill-available;
+  text-rendering: optimizeSpeed;
+}
+
+body {
+  position: relative;
+  font-family: "Kadwa", "Helvetica Neue", sans-serif;
+  background-image: url("./assets/images/bg.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  color: #fefefe;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.body-content {
+  min-height: calc(100% - 7rem);
+  min-height: calc(100vh - 7rem);
+  height: calc(100% - 7rem);
+}
+
+.text-stoke-red {
+  text-shadow: 5px 5px 0 #f64363, 1.1px -1.1px 0 #f64363, -1.1px 1.1px 0 #f64363,
+    1.1px 1.1px 0 #f64363;
+}
+
+.text-stoke-blue {
+  text-shadow: 5px 5px 0 #436af6, 1.1px -1.1px 0 #436af6, -1.1px 1.1px 0 #436af6,
+    1.1px 1.1px 0 #436af6;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+*.swal2-shown,
+*.swal2-height-auto {
+  flex: none;
+}
+
+.text-stoke-red {
+  text-shadow: 5px 5px 0 #f64363, 1.1px -1.1px 0 #f64363, -1.1px 1.1px 0 #f64363,
+    1.1px 1.1px 0 #f64363;
+}
+
+.text-stoke-blue {
+  text-shadow: 5px 5px 0 #436af6, 1.1px -1.1px 0 #436af6, -1.1px 1.1px 0 #436af6,
+    1.1px 1.1px 0 #436af6;
+}

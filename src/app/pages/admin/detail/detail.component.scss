@@ -1,0 +1,41 @@
+.text-stoke-blue {
+  text-shadow: 5px 5px 0 #436af6, 1.1px -1.1px 0 #436af6, -1.1px 1.1px 0 #436af6,
+    1.1px 1.1px 0 #436af6;
+}
+
+.card {
+  width: 1050px;
+  height: 680px;
+  //   background-color: #f64363;
+  background-color: rgba(67, 106, 246, 0.3);
+  border-radius: 5px;
+  border: 3px solid #436af6; /* Added border color */
+  box-shadow: 0 4px 8px #436af6;
+}
+
+.img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: block; /* Added */
+  //   margin: auto;
+}
+
+.button {
+  font-weight: 500;
+  width: 70px;
+  height: 35px;
+  background-color: #436af6;
+  font-size: 20px;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px #000000;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.hov:hover {
+  color: #f64363;
+}

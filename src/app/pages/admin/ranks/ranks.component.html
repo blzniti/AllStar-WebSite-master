@@ -1,0 +1,32 @@
+<div class="w-full h-full bg-[#12182caa] flex flex-col justify-center items-center overflow-hidden px-2">
+  <!-- images -->
+  <div class="w-full h-full flex flex-wrap justify-center items-center overflow-hidden gap-2 overflow-y-auto">
+    <app-rank-card *ngFor="let image of images.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)"
+      [data]="image" />
+  </div>
+  <!--  pagination -->
+  <div class="w-full h-14 flex justify-center items-center p-4 gap-2">
+    <!-- left -->
+    <button (click)="currentPage = currentPage - 1 <= totalPages ? currentPage - 1 : 1"
+      class="w-10 h-10 bg-[#436af6] hover:bg-[#436af6aa] rounded-full flex justify-center items-center disabled:bg-gray-700"
+      [disabled]="currentPage === 1">
+      <fa-icon [icon]="faAngleLeft" />
+    </button>
+
+    <!-- page number can input of ... -->
+    <div class="w-auto h-10 flex justify-center bg-[#f64363] rounded-lg items-center py-1 px-4 gap-2">
+      <input
+        class="w-10 h-full text-center bg-white rounded-md text-[#f64363] placeholder:text-[#f64363] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+        [value]="currentPage" type="number" min="1" max="{{totalPages}}">
+      <span> / {{totalPages}}</span>
+    </div>
+
+    <!-- right -->
+    <button (click)="currentPage = currentPage + 1 <= totalPages ? currentPage + 1 : totalPages"
+      class="w-10 h-10 bg-[#436af6] hover:bg-[#436af6aa] rounded-full flex justify-center items-center disabled:bg-gray-700"
+      [disabled]="currentPage === totalPages">
+      <fa-icon [icon]="faAngleRight" />
+    </button>
+  </div>
+
+</div>

@@ -1,0 +1,15 @@
+<div *ngIf="this.loaded; else loading"
+  class="relative w-full mx-auto body-content md:pb-6 md:px-24 flex flex-col items-center justify-center gap-6 overflow-hidden">
+  <p class="w-full text-5xl font-bold text-stoke-red text-center">Graph</p>
+  <div class="w-full h-full flex items-center justify-center">
+    <canvas class="w-full h-full" baseChart [type]="'scatter'" [data]="scatterChartData" [options]="scatterChartOptions"
+      [legend]="scatterChartLegend" [plugins]="scatterChartPlugins ? scatterChartPlugins : []">
+    </canvas>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="w-full h-full flex justify-center items-center">
+    <fa-icon [icon]="faSpinner" class="text-9xl text-stoke-red animate-spin" />
+  </div>
+</ng-template>

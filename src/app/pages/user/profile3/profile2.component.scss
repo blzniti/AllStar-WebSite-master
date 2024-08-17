@@ -1,0 +1,33 @@
+.minimal-menu {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    background-color: #cccccc; /* สีเทา */
+    color: black;
+    right: 105px;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 15px; /* เพิ่ม padding เพื่อให้เมนูไม่หายไปเมื่อเมาส์เลื่อนไปที่เมนู */
+  }
+  
+  .pb-5:hover + .minimal-menu,
+  .minimal-menu:hover {
+    display: block;
+  }
+  
+  /* รายการเมนู */
+  .minimal-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .minimal-menu ul li {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .minimal-menu ul li:hover {
+    border-bottom: 2px solid #999;
+  }
+  

@@ -1,0 +1,57 @@
+<div [class]="'relative mx-auto ' + (size == 1 ? ' w-80 h-96' : 'w-60 h-80')">
+  <div class="realtive w-full h-full flex items-center justify-center flex-col gap-6">
+    <div
+      [class]="'w-full h-full mx-auto overflow-hidden bg-white/50 rounded-xl border-4 self-center flex flex-col justify-start items-center'"
+      [style.border-color]="color" [style.background-color]="color">
+      <div class="w-full h-16 flex justify-between items-center p-2 space-x-2 bg-white bg-opacity-0">
+        <div class="w-full h-16 flex justify-between items-center p-2 space-x-2 bg-white bg-opacity-0">
+          <p [class]="'text-xl font-bold text-stroke-white'">{{data.name}}</p>
+          <div class="w-auto h-full flex items-center justify-center gap-4">
+            <!-- trophy -->
+            <div class="relative w-auto h-full flex items-center justify-center text-xs gap-1">
+              <fa-icon [icon]="faTrophy" class=" text-yellow-500" />
+              <span class="text-nowrap">{{data.today_rank}}</span>
+              <div class="absolute -bottom-1 right-0">
+                <!-- old rank increase/decrease -->
+                <fa-icon *ngIf="data.today_rank < data.yesterday_rank && data.yesterday_score !== null"
+                  [icon]="faArrowUp" class=" text-green-500" />
+                <fa-icon *ngIf="data.today_rank > data.yesterday_rank && data.yesterday_score !== null"
+                  [icon]="faArrowDown" class=" text-red-500" />
+                <!-- text -->
+                <span *ngIf="data.yesterday_rank !== data.today_rank && data.yesterday_score !== null"
+                  [style.color]="data.yesterday_rank < data.today_rank ? 'red' : 'green'">{{Math.abs(data.yesterday_rank
+                  -
+                  data.today_rank)}}
+                </span>
+              </div>
+            </div>
+            <!-- score point -->
+            <div class="relative w-auto h-full flex items-center justify-center text-xs gap-1">
+              <fa-icon [icon]="faStar" class=" text-yellow-500" />
+              <span class="text-nowrap">{{data.today_score}} pt</span>
+              <div class="absolute -bottom-1 right-0">
+                <!-- yesterday score increase/decrease -->
+                <fa-icon
+                  *ngIf="data.today_score > data.yesterday_score && data.yesterday_score !== data.today_score && data.yesterday_score !== null"
+                  [icon]="faArrowUp" class=" text-green-500" />
+                <fa-icon
+                  *ngIf="data.today_score < data.yesterday_score && data.yesterday_score !== data.today_score && data.yesterday_score !== null"
+                  [icon]="faArrowDown" class=" text-red-500" />
+                <!-- text -->
+                <span *ngIf="data.yesterday_score !== data.today_score && data.yesterday_score !== null"
+                  [style.color]="data.yesterday_score > data.today_score ? 'red' : 'green'">{{(Math.abs(data.today_score
+                  -
+                  data.yesterday_score)).toFixed(2)}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- image -->
+      <div class="w-full h-full bg-white overflow-hidden flex relative hover:opacity-90">
+        <img [src]="data.imageURL" alt="image_upload" class="w-full h-full object-cover" />
+      </div>
+    </div>
+  </div>
+</div>

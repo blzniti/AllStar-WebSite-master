@@ -1,0 +1,47 @@
+<div class="relative w-full h-full font-bold flex justify-start items-center overflow-hidden">
+  <!-- sidenav -->
+  <div *ngIf="user" class="relative w-96 h-full bg-[#070C22] flex flex-col items-center justify-start">
+    <!-- img -->
+    <div class="w-full h-64 bg-white">
+      <img class="w-full h-full object-cover"
+      [src]="user.image"
+      alt="">
+    </div>
+    <!-- menu -->
+    <div class="relative w-full h-full flex flex-col justify-between items-center gap-4 text-4xl p-5">
+      <!-- main menu -->
+      <div class="flex flex-col justify-start items-center gap-6">
+        <a routerLink="/admin/dashboard" [routerLinkActive]="'text-red-500'"
+          class="hover:text-red-500 cursor-pointer w-full h-auto flex items-center justify-between gap-4">
+          <fa-icon [icon]="faChartColumn" />
+          <span class="w-full text-center">Dashboard</span>
+        </a>
+        <a routerLink="/admin/users" [routerLinkActive]="'text-red-500'"
+          class="hover:text-red-500 cursor-pointer w-full h-auto flex items-center justify-between gap-4">
+          <fa-icon [icon]="faUser" />
+          <span class="w-full text-center">Users</span>
+        </a>
+        <a routerLink="/admin/ranks" [routerLinkActive]="'text-red-500'"
+          class="hover:text-red-500 cursor-pointer w-full h-auto flex items-center justify-between gap-4">
+          <fa-icon [icon]="faMedal" />
+          <span class="w-full text-center">Ranks</span>
+        </a>
+        <a routerLink="/admin/setting" [routerLinkActive]="'text-red-500'"
+          class="hover:text-red-500 cursor-pointer w-full h-auto flex items-center justify-between gap-4">
+          <fa-icon [icon]="faSliders" />
+          <span class="w-full text-center">Setting</span>
+        </a>
+      </div>
+      <!-- logout -->
+      <a href="/auth/logout"
+        class="hover:text-red-500 cursor-pointer w-full h-auto flex items-center justify-between gap-4 p-5">
+        <fa-icon [icon]="faRightFromBracket" />
+        <span class="w-full text-center">Logout</span>
+      </a>
+    </div>
+  </div>
+  <!-- content -->
+  <div class="relative w-full h-full flex-grow">
+    <router-outlet></router-outlet>
+  </div>
+</div>

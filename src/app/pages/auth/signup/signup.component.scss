@@ -1,0 +1,42 @@
+.card {
+  // width: 1050px;
+  // height: 680px;
+  //   background-color: #f64363;
+  background-color: #436af64d;
+  border-radius: 5px;
+  border: 3px solid #436af6; /* Added border color */
+  box-shadow: 0 4px 8px #436af6;
+}
+
+.img {
+  border-radius: 4px;
+  border: 2px solid #436af6;
+  width: 356px;
+  height: 356px;
+  box-shadow: 0 4px 8px #000000;
+}
+
+.input {
+  border: 3px solid #436af6; /* Added border color */
+  // width: 400px;
+  // height: 50px;
+  color: #000;
+  border-radius: 15px;
+  padding-left: 0.5rem;
+  font-weight: bold;
+  // font-size: 16px;
+}
+
+.button {
+  // width: 330px;
+  // height: 60px;
+  background-color: #436af6;
+  font-size: 32px;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px #000000;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}

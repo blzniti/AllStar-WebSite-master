@@ -1,0 +1,60 @@
+<main class="relative w-full h-full max-h-full flex-grow flex-col pb-12 gap-6 overflow-hidden">
+  <div class="relative flex flex-col w-full h-full grow card">
+    <!-- Title -->
+    <div class="h-auto flex pt-4 md:pt-2 pb-4 md:py-0 md:pb-9 items-center justify-center">
+      <img style="width: 80px; height: 60px" src="../../../assets/images/natsu.svg" alt="" />
+      <p class="text-4xl md:text-6xl font-bold text-stoke-red text-center">
+        Upload
+      </p>
+    </div>
+    <form id="signin-form" (submit)="upload($event)"
+      class="text-xl w-full mx-auto h-full grow gap-4 justify-center items-center flex flex-col">
+      <div class="w-full cursor-pointer select-none pt-16 2xl:pt-0" style="display: flex; justify-content: center">
+        <div
+          class="w-[21rem] mx-auto lg:w-[14rem] h-[22.5rem] lg:h-[15rem] rounded-xl overflow-hidden bg-white hover:bg-slate-200 border-4 border-[#f64363] shadow-md shadow-[#f64363]">
+          <div class="relative gap-2 flex flex-col justify-center items-center h-full text-center">
+            <!-- upload -->
+            <input name="imageInput" type="file" (change)="handleFileInput($event)" accept="image/*"
+              style="display: none; pointer-events: auto;" id="imageInput">
+            <label for="imageInput"
+              class="w-full h-full flex justify-center items-center flex-col text-sm md:text-xl cursor-pointer">
+              <img *ngIf="image" [src]="image" alt="image_upload" class="absolute w-full h-full object-cover"
+                style="pointer-events: auto;" />
+              <div *ngIf="!image">
+                <fa-icon [icon]="faCloudArrowDown" class="text-6xl text-[#f64363]" />
+                <p style="color: #f64363"><b>Upload Image</b>
+                  <br>
+                  <span class="text-[0.6rem] md:text-sm">(Size Max 2MB)</span>
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="w-full md:px-6 md:flex justify-center items-center">
+        <input name="imageName" required class="w-full max-w-[30rem] h-12 input text-black" type="text" maxlength="100"
+          placeholder="Name :" />
+      </div>
+      <!-- <div class="w-full md:px-6 md:flex justify-center items-center">
+        <input name="seriesName" required class="w-full max-w-[30rem] h-12 input text-black" type="text" maxlength="100"
+          placeholder="Series Name :" />
+      </div>
+      <div class="w-full md:px-6 md:flex justify-center items-center">
+        <textarea name="description" class="w-full max-w-[30rem] max-h-20 min-h-20 input text-black" type="text"
+          placeholder="Description"></textarea>
+      </div> -->
+      <div style="padding-top: 1rem; display: flex; justify-content: center">
+        <button type="submit" class="text-stoke-blue button font-bold text-center disabled:!bg-gray-600"
+          [disabled]="uploading">
+          Upload
+        </button>
+      </div>
+    </form>
+
+    <!-- arrow router link to "/joinUs" -->
+    <!-- <a routerLink="/"
+      class="cursor-pointer absolute top-6 left-6 text-4xl md:text-6xl text-stoke-red rotate-90 text-[#f64363]">
+      <fa-icon [icon]="faArrowDown" />
+    </a> -->
+  </div>
+</main>

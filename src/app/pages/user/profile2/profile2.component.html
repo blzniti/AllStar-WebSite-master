@@ -1,0 +1,98 @@
+<main class="relative w-full h-full max-h-full flex-grow flex-col pb-12 gap-6">
+    <div class="relative flex flex-col w-full h-full grow gap-12 pt-16 ">
+        <div class="w-full h-auto flex">
+            <div>
+                <img style="border-radius: 50%; width: 150px; height: 150px; object-fit: cover;" [src]="user.image"
+                    alt="">
+            </div>
+            <div class="pl-5" style="display: flex; align-items: end;">
+                <p class="text-2xl md:text-4xl font-bold text-stoke-red ">{{ user.username }}</p>
+            </div>
+        </div>
+        <div class="flex w-full ">
+            <div style="width: 700px;" class="h-auto ">
+                <div class="font-bold text-2xl w-full">
+                    <p>{{ user.note
+                        || "note" }}
+                    </p>
+                </div>
+            </div>
+            <div class="w-full">
+                <div style="display: flex; justify-content: end;">
+                    <a routerLink="/upload" class="flex text-center justify-center items-center font-bold"
+                        style="border: 2px solid white; font-size: 24px; width: 150px; height: 60px; background-color:#436AF6; border-radius: 5px">+
+                        Add New</a>
+                </div>
+                <div class="flex realtive flex-col items-center gap-5 w-full h-auto">
+                    <div *ngFor="let item of user.images let i = index;"
+                        class="relative w-[800px] h-[700px] bg-[#12182C] m-10 flex flex-col">
+                        <div class="w-full flex">
+                            <div class="m-0 w-1/2 h-full pt-3  flex">
+                                <div class="w-full pl-3 font-bold flex gap-0">
+                                    <img style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover;"
+                                        [src]="user.image" alt="">
+                                    <div class="flex flex-col pt-5 pl-3">
+                                        <p style="margin: 0;">12:12 </p>
+                                        <p style="margin: 0;">10 / 3 / 2567</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-1/2 h-full pt-5 space-x-3 pl-24 flex">
+                                <fa-icon [icon]="faTrophy" class="text-4xl text-yellow-500"></fa-icon>
+                                <p class="text-xl pt-2 font-bold">{{item.today_rank}}</p>
+                                <div class="flex space-x-2"
+                                    *ngIf="item.today_rank !== item.yesterday_rank && item.yesterday_score !== null">
+                                    <p *ngIf="item.today_rank < item.yesterday_rank" class="pt-2 font-bold "
+                                        style="color:#00FF00;">^{{Math.abs(item.today_rank-item.yesterday_rank)}}</p>
+                                    <p *ngIf="item.today_rank > item.yesterday_rank" class="pt-2 font-bold "
+                                        style="color:#FF0000;">
+                                        v{{Math.abs(item.today_rank-item.yesterday_rank)}}</p>
+                                </div>
+
+                                <fa-icon [icon]="faHeart" class="text-4xl text-red-500"></fa-icon>
+                                <p class="text-xl pt-2 font-bold">{{item.today_score}}</p>
+                                <div class="flex space-x-2"
+                                    *ngIf="item.today_score != item.yesterday_score && item.yesterday_score !== null">
+                                    <p *ngIf="item.today_score > item.yesterday_score" class="pt-2 font-bold "
+                                        style="color:#00FF00;">
+                                        ^{{(item.today_score-item.yesterday_score).toFixed(2)}}</p>
+                                    <p *ngIf="item.today_score < item.yesterday_score" class="pt-2 font-bold "
+                                        style="color:#FF0000;">
+                                        v{{Math.abs(item.today_score-item.yesterday_score).toFixed(2)}}</p>
+                                </div>
+                            </div>
+                            <div class="realtive w-auto h-auto ">
+                                <button id="menu" class=" pb-5 pt-5 pr-10">
+                                    <fa-icon [icon]="faEllipsisVertical" class="text-3xl pl-2"></fa-icon>
+                                </button>
+
+                                <div class="minimal-menu">
+                                    <ul class="text-center">
+                                        <li>Edit</li>
+                                        <li>Delete</li>
+                                        <!-- <li>Report</li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full ">
+                            <div class="text-2xl pl-4 pt-5 flex font-bold">
+                                <p class="pr-2">{{ item.name}}</p>
+                                <p style="color: #F64363;">(Solo Leveling)</p>
+                            </div>
+                            <p class="pl-4" style="font-size: 18px; ">Lorem ipsum dolor sit amet consectetur
+                                adipisicing
+                                elit. Dolorum iure minima
+                                velit laudantium deleniti unde magnam quis natus porro quas? Alias dicta, velit
+                            </p>
+                        </div>
+                        <div class="relative flex w-full h-full bg-white">
+                            <img style="width: 800px; height: 550px;" class=" object-cover object-center"
+                                [src]="item.imageURL" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

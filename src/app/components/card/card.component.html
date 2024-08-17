@@ -1,0 +1,39 @@
+<div class="relative mx-auto w-80 h-[25rem] xl:w-96 xl:h-[35rem]">
+  <div class="realtive w-full h-full flex items-center justify-center flex-col gap-6">
+    <div
+      [class]="'w-full h-full mx-auto overflow-hidden bg-white/50 rounded-xl border-4 self-center flex flex-col justify-start items-center'"
+      [style.border-color]="color" [style.background-color]="color">
+      <a [routerLink]="'/profile/' + data.userId"
+        class="w-full h-16 flex justify-start items-center p-2 space-x-2 bg-white bg-opacity-0 hover:bg-opacity-25">
+        <div class="size-12 bg-white rounded-full relative border-2">
+          <img [src]="data.userImage" alt="profile" class="w-full h-full object-cover rounded-full" />
+        </div>
+        <p [class]="'text-xl font-bold text-stroke-white'">{{data.username}}</p>
+      </a>
+
+      <!-- image -->
+      <div (click)="callback(data)" *ngIf="callback; else noVote"
+        class="w-full h-full bg-white overflow-hidden flex relative cursor-pointer hover:opacity-90">
+        <img [src]="data.imageURL" alt="image_upload" class="w-full h-full object-cover" />
+      </div>
+
+      <ng-template #noVote>
+        <div class="w-full h-full bg-white overflow-hidden flex relative">
+          <img [src]="data.imageURL" alt="image_upload" class="w-full h-full object-cover" />
+        </div>
+      </ng-template>
+    </div>
+    <!-- name -->
+    <div *ngIf="!disabledName"
+      [class]="'hidden lg:flex max-w-full overflow-hidden mx-auto w-fit px-12 py-4 text-2xl justify-center text-center items-center h-fit rounded-tl-full rounded-br-full'"
+      [style.background-color]="color">
+      <p class="text-ellipsis line-clamp-1 text-left !m-0 !p-0">{{data.name}}</p>
+    </div>
+
+    <!-- Damage Text -->
+    <p [@damageAnimation]="damageState"
+      class="absolute top-0 left-10 transform -translate-y-1/2 neon-text text-7xl font-bold z-10">
+      {{ damageText }}
+    </p>
+  </div>
+</div>

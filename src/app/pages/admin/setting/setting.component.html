@@ -1,0 +1,40 @@
+<div
+  class="w-full h-full bg-[#12182caa] overflow-x-hidden overflow-y-auto flex flex-col justify-center items-center pt-10 pb-10">
+  <div class="relative w-full h-full flex items-center justify-around gap-20 p-6 bg-transparent">
+    <div class="w-[80%] h-full bg-[#292F46aa] rounded-xl flex items-center justify-center gap-4 overflow-hidden">
+      <!-- icon -->
+      <fa-icon [icon]="faHourglassHalf" class="text-[24rem] text-white" />
+      <!-- text number, detail -->
+      <div class="h-full flex flex-col items-start justify-center">
+        <p class="text-[5rem] font-bold text-white">Recooldown Time</p>
+        <div class="flex items-end justify-end">
+          <p class="pt-5 text-7xl text-white">Vote Card </p>
+          <p class="pt-5 pl-5 text-2xl text-gray-500">Current : {{oldValue}} seconds</p>
+        </div>
+        <div class="form-control w-full">
+          <input class="w-full" [(ngModel)]="newValue" [required]="true" type="number">
+          <label>
+            <span style="transition-delay:600ms">T</span>
+            <span style="transition-delay:550ms">i</span>
+            <span style="transition-delay:500ms">m</span>
+            <span style="transition-delay:450ms">e</span>
+            <span style="transition-delay:400ms"> </span>
+            <span style="transition-delay:350ms">(</span>
+            <span style="transition-delay:300ms">s</span>
+            <span style="transition-delay:250ms">e</span>
+            <span style="transition-delay:200ms">c</span>
+            <span style="transition-delay:150ms">o</span>
+            <span style="transition-delay:100ms">n</span>
+            <span style="transition-delay:50ms">d</span>
+            <span style="transition-delay:0ms">)</span>
+          </label>
+        </div>
+        <div class="mx-auto">
+          <button (click)="updateASTime()"
+            class="bgbut flex text-center justify-center items-center disabled:!bg-gray-500 font-bold border-2 border-white w-64 h-16 text-3xl"
+            [disabled]="oldValue === newValue">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

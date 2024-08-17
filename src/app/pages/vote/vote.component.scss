@@ -1,0 +1,44 @@
+.text-stoke-red {
+  text-shadow: 1px 3px 0 #f64363, 1.1px -1.1px 0 #f64363, -1.1px 1.1px 0 #f64363,
+    1.1px 1.1px 0 #f64363;
+}
+
+/* Toggle Button */
+#toggle {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 60px;
+  height: 30px;
+  border-radius: 30px;
+  background-color: #f64363;
+  position: relative;
+  transition: all 0.5s ease-in;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* Making a dot switch inside the Toggle Button */
+#toggle::before {
+  content: "";
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #eee;
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  transform: translateY(-50%);
+  transition: all 0.5s ease-in;
+}
+
+/* Changing toggle button background when checked */
+#toggle:checked {
+  background: #5171e4;
+}
+
+/* Changing dot switch color and moving to the right side when checked */
+#toggle:checked::before {
+  background: #fff;
+  left: 32px;
+}

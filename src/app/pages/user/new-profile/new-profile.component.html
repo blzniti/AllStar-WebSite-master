@@ -1,0 +1,75 @@
+<main class="relative w-full h-full flex-grow flex-col pb-12 gap-6">
+  <div *ngIf="user; else loading" class="relative flex flex-col w-full h-full gap-6">
+    <!-- profile details -->
+    <section
+      class="relative w-full min-h-96 h-96 bg-gray-100/40 flex items-center justify-center overflow-hidden rounded-lg p-4">
+      <!-- image -->
+      <div class="w-96 h-full overflow-hidden rounded-xl border-2 drop-shadow-lg">
+        <img [src]="user.image" alt="profile image" class="min-w-full min-h-full w-full h-auto object-cover" />
+      </div>
+      <!-- detail -->
+      <div class="w-full h-full flex flex-col justify-start items-start p-4">
+        <!-- name -->
+        <h1 class="text-4xl w-full p-2 h-auto font-bold">{{ user.displayName }}</h1>
+        <!-- bio -->
+        <div class="text-lg w-full h-full p-2 text-gray-200 text-wrap border-2 rounded-lg bg-yellow-200/20">
+          <p>{{ user.note }}</p>
+        </div>
+        <!-- icon edit -->
+      </div>
+      <div class="flex absolute top-4 right-4 w-auto h-auto text-lg gap-2">
+        <a [routerLink]="['/', 'graph', 'user', user.userId]">
+          <fa-icon [icon]="faChartLine"
+            class=" rounded-lg p-2 hover:bg-white hover:text-black bg-[#F64363] cursor-pointer" />
+        </a>
+        <a *ngIf="isOwnProfile" [routerLink]="['/','user','edit']">
+          <fa-icon [icon]="faEdit"
+            class=" rounded-lg p-2 hover:bg-white hover:text-black bg-yellow-500 cursor-pointer" />
+        </a>
+      </div>
+    </section>
+
+    <!-- images uploaded -->
+    <section *ngIf="user.images" class="w-full h-auto flex flex-col items-center justify-center gap-1 py-5">
+      <!-- top right button if images < 5 Add New -->
+      <div *ngIf="user.images.length < 5 && isOwnProfile" class="w-full h-auto flex justify-end items-center">
+        <a routerLink="/image/upload"
+          class="w-36  text-lg font-bold gap-2 h-auto py-4 px-2 bg-[#F64363] text-white rounded-lg flex justify-center items-center self-end">
+          <fa-icon [icon]="faPlus" class="text-4xl" />
+          <span>Add New</span>
+        </a>
+      </div>
+      <!-- map rank-card -->
+      <div class="w-full h-full flex justify-center items-center">
+        <div class="w-auto h-auto flex items-center justify-center gap-4 relative flex-wrap">
+          <div class="relative w-auto h-auto flex flex-col justify-center items-center"
+            *ngFor="let image of user.images">
+            <app-rank-card [data]="image" [size]="1" />
+            <div *ngIf="isOwnProfile" class="flex gap-2 absolute bottom-2 right-2 p-2">
+              <a [routerLink]="['/', 'graph', 'image', image.imageId]">
+                <fa-icon [icon]="faChartLine"
+                  class="text-2xl p-2 rounded-lg hover:bg-white hover:text-black bg-[#F64363] cursor-pointer" />
+              </a>
+              <a [routerLink]="['/', 'image', 'edit', image.imageId]">
+                <fa-icon [icon]="faEdit"
+                  class="text-2xl p-2 rounded-lg hover:bg-white hover:text-black bg-yellow-500 cursor-pointer" />
+              </a>
+              <a>
+                <fa-icon (click)="delete($event, image)" [icon]="faTrash"
+                  class="text-2xl p-2 rounded-lg hover:bg-white hover:text-black bg-red-500 cursor-pointer" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <p *ngIf="user.images.length === 0" class="text-2xl text-gray-200">No images uploaded</p>
+      </div>
+    </section>
+  </div>
+
+  <ng-template #loading>
+    <div class="relative flex w-full h-full pr-2 md:pr-0 grow gap-5 flex-col justify-center items-center mx-auto">
+      <fa-icon [icon]="faSpinner" class="text-9xl text-stoke-red animate-spin" />
+    </div>
+  </ng-template>
+</main>

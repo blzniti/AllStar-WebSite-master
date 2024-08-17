@@ -1,0 +1,31 @@
+.text-stoke-red {
+  text-shadow: 5px 5px 0 #f64363, 1.1px -1.1px 0 #f64363, -1.1px 1.1px 0 #f64363,
+    1.1px 1.1px 0 #f64363;
+}
+
+/* Style the table header cells */
+th {
+  border: 1px solid #12182c;
+  background-color: #12182c;
+  //   text-align: left;
+}
+
+/* Style the table data cells */
+td {
+  // border: 1px solid #12184d;
+  // background-color: #12184d;
+  text-align: center;
+}
+
+tr:nth-child(odd) {
+  background-color: #12184d;
+}
+
+tr:nth-child(even) {
+  background-color: #252e7e; /* หรือสีอื่นๆ ที่ต้องการให้สลับกัน */
+}
+
+table * {
+  // remove border
+  border: none;
+}

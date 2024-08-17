@@ -1,0 +1,88 @@
+<main class="relative w-full h-full max-h-full flex-grow flex-col pb-12 gap-6 -mt-12">
+  <div class="relative flex flex-col w-full h-full grow gap-12 pt-16 ">
+    <div *ngIf="user" class="relative w-full h-full flex flex-col justify-start items-center">
+      <div class="w-full gap-4 h-auto flex items-center p-2 pt-12">
+        <div class="size-64 border-2 bg-white relative rounded-full overflow-hidden flex justify-center items-center">
+          <img class="min-w-full w-auto h-full min-h-full object-cover" [src]="user.image" alt="">
+        </div>
+        <div class="w-auto h-full flex flex-col justify-end items-start">
+          <p class="text-2xl md:text-4xl font-bold text-stoke-red">{{ user.username }}</p>
+        </div>
+      </div>
+      <div class="w-full h-full flex flex-col xl:flex-row items-center justify-center">
+        <div class="w-[45rem] h-full p-2 text-2xl">
+          <p>{{user.note}}</p>
+        </div>
+        <div class="w-full h-full flex flex-col justify-start items-center gap-6 p-4">
+          <div *ngIf="UID == UIDToken" class="w-full h-auto flex justify-end items-center">
+            <a routerLink="/upload"
+              class="font-bold text-2xl w-auto h-auto bg-[#436AF6] text-whte border-2 p-3 rounded-lg">
+              + Add New
+            </a>
+          </div>
+          <div *ngFor="let item of user.images"
+            class="w-full max-w-2xl min-h-[40rem] h-auto flex flex-col flex-nowrap justify-start items-center bg-[#12182C] rounded-lg overflow-hidden">
+            <!-- top -->
+            <div class="w-full h-28 flex justify-between items-center p-2 space-x-2 bg-white bg-opacity-0">
+              <div class="w-auto h-full flex justify-start items-center gap-2">
+                <div class="size-20 relative overflow-hidden rounded-full border-2">
+                  <img class="min-w-full w-auto h-full min-h-full object-cover" [src]="user.image" alt="">
+                </div>
+                <div class="text-sm text-left h-full font-bold text-stroke-white flex flex-col justify-center">
+                  <span>{{item.last_update.split(" ")[1]}}</span>
+                  <span>{{item.last_update.split(" ")[0]}}</span>
+                </div>
+              </div>
+              <!-- right -->
+              <div class="w-auto h-full flex items-center justify-center gap-4">
+                <!-- trophy -->
+                <div class="flex justify-center items-center w-auto h-full gap-1">
+                  <fa-icon [icon]="faTrophy" class="text-4xl text-yellow-500"></fa-icon>
+                  <p class="text-xl pt-2 font-bold">{{item.today_rank}}</p>
+                  <div class="flex space-x-2"
+                    *ngIf="item.today_rank !== item.yesterday_rank && item.yesterday_score !== null">
+                    <p *ngIf="item.today_rank < item.yesterday_rank" class="pt-2 font-bold " style="color:#00FF00;">
+                      ^{{Math.abs(item.today_rank-item.yesterday_rank)}}</p>
+                    <p *ngIf="item.today_rank > item.yesterday_rank" class="pt-2 font-bold " style="color:#FF0000;">
+                      v{{Math.abs(item.today_rank-item.yesterday_rank)}}</p>
+                  </div>
+                </div>
+
+                <!-- heart -->
+                <div class="flex justify-center items-center w-auto h-full gap-1">
+                  <fa-icon [icon]="faHeart" class="text-4xl text-red-500"></fa-icon>
+                  <p class="text-xl pt-2 font-bold">{{item.today_score}}</p>
+                  <div class="flex space-x-2"
+                    *ngIf="item.today_score != item.yesterday_score && item.yesterday_score !== null">
+                    <p *ngIf="item.today_score > item.yesterday_score" class="pt-2 font-bold " style="color:#00FF00;">
+                      ^{{(item.today_score-item.yesterday_score).toFixed(2)}}</p>
+                    <p *ngIf="item.today_score < item.yesterday_score" class="pt-2 font-bold " style="color:#FF0000;">
+                      v{{Math.abs(item.today_score-item.yesterday_score).toFixed(2)}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- text -->
+            <div class="relative w-full max-h-[10rem] text-ellipsis flex flex-col">
+              <div class="text-2xl pl-4 pt-5 flex font-bold">
+                <p class="pr-2">{{ item.name}}</p>
+                <p style="color: #F64363;">({{item.series_name}})</p>
+              </div>
+              <p class="text-lg text-stroke-red w-full pl-4">
+                {{ item.description }}
+              </p>
+            </div>
+
+            <!-- image -->
+            <div class="relative w-full h-full max-h-[50rem] bg-white flex items-center justify-center overflow-hidden">
+              <!-- canvas hidden for real size -->
+              <img [src]="item.imageURL" class="min-w-full w-auto h-full min-h-full object-cover" [alt]="item.name"
+                [style.object-position]="item.isPortrait ? 'center' : 'center'">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

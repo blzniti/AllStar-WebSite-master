@@ -1,0 +1,118 @@
+.text-stoke-blue {
+  text-shadow: 5px 5px 0 #436af6, 1.1px -1.1px 0 #436af6, -1.1px 1.1px 0 #436af6,
+    1.1px 1.1px 0 #436af6;
+}
+
+.card {
+  width: 1050px;
+  height: 680px;
+  //   background-color: #f64363;
+  background-color: rgba(67, 106, 246, 0.3);
+  border-radius: 5px;
+  border: 3px solid #436af6; /* Added border color */
+  box-shadow: 0 4px 8px #436af6;
+}
+
+.img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: block; /* Added */
+  //   margin: auto;
+}
+
+.button {
+  font-weight: 500;
+  width: 70px;
+  height: 35px;
+  background-color: #436af6;
+  font-size: 20px;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px #000000;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+table {
+  width: 1500px;
+}
+
+th {
+  border: 1px solid #12182c;
+  background-color: #12182c;
+}
+
+tr {
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid #12184d;
+  background-color: #12184d;
+  cursor: pointer;
+}
+
+tr {
+  border-radius: 100%;
+}
+
+.hov:hover {
+  color: #f64363;
+}
+
+tr:hover {
+  background-color: #202a49;
+}
+
+.bgbut{
+  background-color:#070C22;
+}
+
+.bgbut:hover {
+  background-color: #f64363;
+}
+
+
+.form-control {
+  position: relative;
+  margin: 20px 0 40px;
+}
+
+.form-control input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px #fff solid;
+  display: block;
+  width: 100%;
+  padding: 15px 0;
+  font-size: 18px;
+  color: #fff;
+}
+
+.form-control input:focus,
+.form-control input:valid {
+  outline: 0;
+  border-bottom-color: lightblue;
+}
+
+.form-control label {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  pointer-events: none;
+}
+
+.form-control label span {
+  display: inline-block;
+  font-size: 18px;
+  min-width: 5px;
+  color: #fff;
+  transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.form-control input:focus+label span,
+.form-control input:valid+label span {
+  color: lightblue;
+  transform: translateY(-30px);
+}

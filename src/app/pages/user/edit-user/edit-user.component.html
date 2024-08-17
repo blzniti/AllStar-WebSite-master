@@ -1,0 +1,67 @@
+<main class="relative w-full h-full max-h-full flex-grow flex-col pb-12 gap-6 overflow-hidden">
+  <div *ngIf="oldUserData" class="relative flex flex-col w-full h-full grow card">
+    <!-- Title -->
+    <div class="h-auto flex pt-4 md:pt-2 pb-4 md:py-0 md:pb-9 items-center justify-center">
+      <img style="width: 80px; height: 60px" src="../../../assets/images/rem.svg" alt="" />
+      <p class="text-4xl md:text-5xl font-bold text-stoke-blue text-center pb-12 lg:pb-0">
+        Edit Profile
+      </p>
+    </div>
+
+    <!-- Form -->
+    <form id="edit-form" (submit)="edit($event)"
+      class="relative text-xl w-full mx-auto h-full min-h-full overflow-hidden gap-4 justify-center items-center flex flex-col">
+      <div class="w-full cursor-pointer select-none pb-4" style="display: flex; justify-content: center">
+        <div
+          class="size-32 md:size-36 lg:size-40 xl:size-44 2xl:size-48 rounded-full overflow-hidden bg-white hover:bg-slate-200 border-4 border-[#436af6] shadow-md shadow-[#436af6]">
+          <div class="relative gap-2 flex flex-col justify-center items-center h-full text-center">
+            <!-- upload -->
+            <input name="imageInput text-black" type="file" (change)="handleFileInput($event)" accept="image/*"
+              style="display: none; pointer-events: auto;" id="imageInput text-black">
+            <label for="imageInput text-black"
+              class="w-full h-full flex justify-center items-center flex-col text-sm md:text-xl cursor-pointer">
+              <img *ngIf="image" [src]="image" alt="image_upload" class="absolute w-full h-full object-cover"
+                style="pointer-events: auto;" />
+              <div *ngIf="!image">
+                <fa-icon [icon]="faCloudArrowDown" class="text-5xl md:text-6xl text-[#436af6]" />
+                <p class="text-sm md:text-base" style="color: #436af6"><b>Upload Image</b>
+                  <br>
+                  <span class="text-xs md:text-sm">(Size Max 2MB)</span>
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full px-6 md:flex justify-center items-center">
+        <p class="w-32" style="padding-right: 1rem; "><b>Username</b></p>
+        <input name="username" disabled [value]="oldUserData.username" required
+          class="w-full max-w-[30rem] h-12 input text-black bg-gray-400" type="text" minlength="4"
+          pattern="[A-Za-z0-9]+" maxlength="20" placeholder="Username :" />
+      </div>
+      <div class="w-full px-6 md:flex justify-center items-center">
+        <p class="w-32" style="padding-right: 1rem; "><b>DisplayName</b></p>
+        <input name="displayName" required [value]="oldUserData.displayName"
+          class="w-full max-w-[30rem] h-12 input text-black" type="text" minlength="4" pattern="[A-Za-z0-9]+"
+          maxlength="20" placeholder="DisplayName :" />
+      </div>
+      <div class="w-full px-6 md:flex justify-center items-center">
+        <p class="w-32" style="padding-right: 1rem; "><b>Note</b></p>
+        <textarea name="note" class="w-full max-w-[30rem] max-h-20 min-h-20 input text-black"
+          [value]="oldUserData.note" type="text" maxlength="100" placeholder="note"></textarea>
+      </div>
+
+      <button type="submit"
+        class="select-none text-stoke-blue w-full max-w-48 lg:max-w-96 h-16 p-4 button font-bold text-center disabled:!bg-slate-500"
+        [disabled]="isChanging">
+        Edit Profile
+      </button>
+    </form>
+
+    <!-- <a routerLink="/auth/join"
+      class="cursor-pointer absolute top-6 left-6 text-4xl md:text-6xl text-stoke-blue rotate-90 text-[#436af6]">
+      <fa-icon [icon]="faArrowDown" />
+    </a> -->
+  </div>
+</main>

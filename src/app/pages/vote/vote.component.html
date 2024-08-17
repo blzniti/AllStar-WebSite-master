@@ -1,0 +1,83 @@
+<main class="relative w-full min-h-full flex-grow flex-col">
+  <div class="relative flex flex-col w-full min-h-full flex-grow gap-4">
+    <!-- Title -->
+    <div class="h-auto flex pt-4 md:pt-2 md:py-0 items-center justify-center flex-col gap-2">
+      <p class="w-full text-4xl md:text-5xl font-bold text-stoke-red text-center lg:pb-0">
+        Best Anime Star
+      </p>
+      <!-- input toggle box -->
+      <div class="w-full h-auto flex relative items-center justify-center gap-4">
+        <input type="checkbox" id="toggle" class="border" (change)="toggle($event)" [(ngModel)]="allowShowResult" />
+        <span class="text-stoke-blue font-bold text-lg">Show Result</span>
+      </div>
+    </div>
+
+    <div *ngIf="images.length == 2; else loading"
+      class="relative text-xl w-full mx-auto min-h-full gap-4 justify-center lg:justify-center items-center flex flex-col lg:pt-12 flex-grow mb-12 lg:mb-0">
+      <div class="w-full min-h-full flex items-center justify-start lg:justify-center gap-12 flex-col lg:flex-row">
+        <app-card [data]="images[0]" color="#f64363" [callback]="vote" />
+        <span class="w-fit mx-auto text-center py-12 lg:py-0 !m-0 text-7xl">
+          VS
+        </span>
+        <app-card [data]="images[1]" color="#436AF6" [callback]="vote" />
+      </div>
+    </div>
+
+    <ng-template #loading>
+      <div class="relative flex w-full h-full pr-2 md:pr-0 grow gap-5 flex-col justify-center items-center mx-auto">
+        <fa-icon [icon]="faSpinner" class="text-9xl text-stoke-red animate-spin" />
+        <p class="text-2xl text-center">{{message}}</p>
+      </div>
+    </ng-template>
+  </div>
+</main>
+
+
+<div *ngIf="result && htmlData && voteResult"
+  class="fixed z-10 inset-0 top-1/2 -translate-y-1/2 left-0 w-screen h-screen mx-auto xl:p-8 items-center flex justify-center overflow-hidden">
+  <div
+    class="relative w-full h-full bg-slate-500/95 flex flex-col items-center justify-start py-8 px-8 lg:p-24 gap-12 overflow-x-hidden overflow-y-auto">
+    <p class="text-xl md:text-3xl lg:text-5xl text-stoke-blue font-bold text-center">{{htmlData.winnerIndex === 0 ?
+      'Red' : 'Blue'}} Winner (Old Winner Score : {{voteResult.winner.oldScore}}, Old Loser Score :
+      {{voteResult.loser.oldScore}})</p>
+    <!-- Expression Elo to calculate Rating System -->
+    <!-- Calculate Expected Score of Players -->
+    <div class="w-full h-auto flex flex-col gap-4 text-center font-bold text-stoke-red text-xl md:text-3xl lg:text-5xl">
+      <p>Calculate Expected Score of Players</p>
+      <img class="w-auto mx-auto h-32" src="../../../assets/images/EaEb.png">
+    </div>
+
+    <div class="w-full h-auto text-left text-base md:text-lg xl:text-2xl">
+      <p>
+        EWinner = 1 / (1 + 10^(({{voteResult.winner.oldScore}} - {{voteResult.loser.oldScore}}) / 400)) = <span
+          class="font-bold">{{voteResult.winner.expected}}</span>
+      </p>
+      <p>
+        ELoser = 1 / (1 + 10^(({{voteResult.loser.oldScore}} - {{voteResult.winner.oldScore}}) / 400)) = <span
+          class="font-bold">{{voteResult.loser.expected}}</span>
+      </p>
+    </div>
+
+    <!-- Calculate New Score of Players -->
+    <div class="w-full h-auto flex flex-col gap-4 text-center font-bold text-stoke-red text-xl md:text-3xl lg:text-5xl">
+      <p>Calculate New Score of Players</p>
+      <img class="w-auto mx-auto h-32" src="../../../assets/images/RaRb.png">
+    </div>
+
+    <div class="w-full h-auto text-left text-base md:text-lg xl:text-2xl">
+      <p>
+        RWinner' = {{voteResult.winner.oldScore}} + 32(1 - {{voteResult.winner.expected}}) = <span
+          class="font-bold">{{voteResult.winner.newScore}} (new score Red)</span>
+      </p>
+      <p>
+        RLoser' = {{voteResult.loser.oldScore}} + 32(0 - {{voteResult.loser.expected}}) = <span
+          class="font-bold">{{voteResult.loser.newScore}} (new score Blue)</span>
+      </p>
+    </div>
+
+    <!-- close icon top right -->
+    <fa-icon [icon]="faTimes" class="absolute text-red-500 font-bold top-6 right-6 text-4xl cursor-pointer"
+      (click)="closeResult()" />
+
+  </div>
+</div>
