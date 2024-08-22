@@ -65,7 +65,7 @@ This project is built using Angular, showcasing various features and best practi
 
 This project is licensed under the MIT License.
 
-Copyright (c) 2023 MaouStan
+Copyright (c) 2023 blzniti
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
